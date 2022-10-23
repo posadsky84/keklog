@@ -1,0 +1,13 @@
+.leftcolumn {
+    grid-area: l;
+    background-color: pink;
+    padding: 20px;
+}
+
+.ddate {
+    color: black;
+}
+
+.curDdate {
+    color: red;
+}
