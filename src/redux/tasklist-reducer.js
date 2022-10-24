@@ -3,8 +3,8 @@
 const TOGGLE_TASK = 'CHECK_TASK';
 const SET_TASKS = 'SET_TASKS';
 
-export const toggleTaskActionCreator = (id) => ({type: TOGGLE_TASK, id: id});
-export const setTasksActionCreator = (tasks) => ({type: SET_TASKS, tasks: tasks});
+export const toggleTask = (id) => ({type: TOGGLE_TASK, id: id});
+export const setTasks = (tasks) => ({type: SET_TASKS, tasks: tasks});
 
 
 

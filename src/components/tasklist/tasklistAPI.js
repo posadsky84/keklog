@@ -1,4 +1,4 @@
-import {setTasksActionCreator, toggleTaskActionCreator} from "../../redux/tasklist-reducer";
+import {setTasks, toggleTask} from "../../redux/tasklist-reducer";
 import Tasklist from "./tasklist";
 import {connect} from "react-redux";
 import React from "react";
@@ -11,16 +11,7 @@ let mapStateToProps = (state) => {
   }
 };
 
-let mapDispatchToProps = (dispatch) => {
-  return {
-    toggleTask: (id) => {
-      dispatch(toggleTaskActionCreator(id))
-    },
-    setTasks: (tasks) => {
-      dispatch(setTasksActionCreator(tasks))
-    },
-  }
-};
+
 
 
 class tasklistAPI extends React.Component {
@@ -41,7 +32,7 @@ class tasklistAPI extends React.Component {
   }
 
   loadtasks() {
-    axios.get(`http://localhost:4000/tasks?ddate=${this.props.curDdate.getFullYear()}${this.props.curDdate.getMonth()+1}${this.props.curDdate.getDate()}`)
+    axios.get(`http://localhost:4000/tasks?ddate=${this.props.curDdate.getFullYear()}${this.props.curDdate.getMonth() + 1}${this.props.curDdate.getDate()}`)
       .then(response => {
         //this.props.toggleIsFetching(false);
         this.props.setTasks(response.data);
@@ -66,4 +57,6 @@ class tasklistAPI extends React.Component {
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(tasklistAPI);
+export default connect(mapStateToProps,{toggleTask,setTasks})(tasklistAPI);
+
+
