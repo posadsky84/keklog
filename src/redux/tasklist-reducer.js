@@ -17,7 +17,7 @@ const initialState = {
 
 const TasklistReducer = (state = initialState, action) => {
 
-  debugger;
+
 
   switch (action.type) {
     case TOGGLE_TASK:
