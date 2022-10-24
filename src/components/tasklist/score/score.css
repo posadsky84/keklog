@@ -11,3 +11,18 @@
 .score:hover {
     background-color: #8993A4;
 }
+
+.score-input-wrapper {
+    position: relative;
+    width: 50px;
+}
+
+.score-input {
+    width: 100%;
+}
+
+.score-buttons {
+    position: absolute;
+    display: flex;
+    top: calc(100% + 4px);
+}

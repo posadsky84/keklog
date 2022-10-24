@@ -1,6 +1,7 @@
 import React from 'react';
 import './tasklist.css';
 import Score from "./score/score";
+import {setScore} from "../../redux/tasklist-reducer";
 
 
 const Tasklist = (props) => {
@@ -13,11 +14,11 @@ const Tasklist = (props) => {
             <input
               type="checkbox"
               id={`cb${id}`}
-              onClick={() => props.toggleTask(id)}
+              onClick={() => props.toggleTask(id, !checked)}
               checked={checked}
             />
             <label htmlFor={`cb${id}`}>{taskname}</label>
-            <Score score={score}/>
+            <Score id={id} score={score} setScore={props.setScore}/>
           </div>
         ))}
       </div>
