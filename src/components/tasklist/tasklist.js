@@ -1,7 +1,7 @@
 import React from 'react';
 import './tasklist.css';
 import Score from "./score/score";
-import {setScore} from "../../redux/tasklist-reducer";
+import Category from "./category/category";
 
 
 const Tasklist = (props) => {
@@ -9,7 +9,7 @@ const Tasklist = (props) => {
     <>
       <h2 className='ddate-label'>{props.curDdate.getDate()}.{props.curDdate.getMonth() + 1}</h2>
       <div className='task-list'>
-        {props.tasks.map(({id, taskname, checked, score}) => (
+        {props.tasks.map(({id, taskname, checked, score, category}) => (
           <div className='task-item' key={id}>
             <input
               type="checkbox"
@@ -18,6 +18,7 @@ const Tasklist = (props) => {
               checked={checked}
             />
             <label htmlFor={`cb${id}`}>{taskname}</label>
+            <Category taskId={id} categoryId={category} categories={props.categories} setCategory={props.setCategory}/>
             <Score id={id} score={score} setScore={props.setScore}/>
           </div>
         ))}
@@ -26,6 +27,5 @@ const Tasklist = (props) => {
 }
 
 
-//export default connect(mapStateToProps, mapDispatchToProps)(Tasklist);
 export default Tasklist;
 

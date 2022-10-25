@@ -1,0 +1,30 @@
+.category-label {
+    padding: 3px;
+    font-size: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.category-editor-wrapper {
+    position: relative;
+    margin-right: auto;
+    margin-left: 12px;
+}
+
+.category-editor {
+    display: flex;
+    position: absolute;
+    top: calc(100% + 4px);
+    flex-direction: column;
+    border: 1px solid #8993A4;
+    z-index: 1;
+    background-color: white;
+
+}
+
+.borderline {
+    border-top: 1px solid #8993A4;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}

@@ -1,4 +1,4 @@
-import React, {useState, useRef} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import "./score.css";
 
 const Score = ({id, score, setScore}) => {
@@ -8,27 +8,42 @@ const Score = ({id, score, setScore}) => {
 
   const inputRef = useRef(null);
 
+
+
   const cancelEditing = () => {
+    // document.removeEventListener(`mousedown`, handleClickOutside);
     setIsEditing(false);
     setScoreValue(score);
-    document.removeEventListener(`mousedown`, handleClickOutside);
   }
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      console.log(`handleClickOutside`, { inputRef }, inputRef && !inputRef?.current?.contains(event.target));
+      if (inputRef && !inputRef?.current?.contains(event.target)) {
+        cancelEditing();
+      }
+    }
+    if (isEditing) {
+      document.addEventListener(`mousedown`, handleClickOutside);
+      return () => {
+        document.removeEventListener(`mousedown`, handleClickOutside);
+      }
+    }
+  }, [isEditing]);
+
+
+
+
 
   const commitEditing = () => {
+    // document.removeEventListener(`mousedown`, handleClickOutside);
     setScore(id, scoreValue);
     setIsEditing(false);
-    document.removeEventListener(`mousedown`, handleClickOutside);
-  }
-
-  const handleClickOutside = (event) => {
-    if (!inputRef?.current?.contains(event.target)) {
-      cancelEditing();
-    }
   }
 
   const onScoreClick = () => {
     setIsEditing(true);
-    document.addEventListener(`mousedown`, handleClickOutside);
+    // document.addEventListener(`mousedown`, handleClickOutside);
   }
 
   return isEditing
