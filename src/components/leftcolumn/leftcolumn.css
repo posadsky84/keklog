@@ -1,13 +1,27 @@
-.leftcolumn {
+.smart-calendar {
+    display: flex;
     grid-area: l;
     background-color: pink;
     padding: 20px;
+    flex-wrap: wrap;
+    align-content: start;
+
 }
+
+
 
 .ddate {
     color: black;
+    padding: 5px;
+    height: 30px;
+    width: 14%;
+
 }
 
 .curDdate {
     color: red;
+}
+
+.exist-ddate {
+    background-color: lightskyblue;
 }

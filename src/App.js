@@ -2,7 +2,7 @@
 import './App.css';
 import Tasklist from "./components/tasklist/tasklistAPI";
 import Header from "./components/header/header";
-import Leftcolumn from "./components/leftcolumn/leftcolumn";
+import Leftcolumn from "./components/leftcolumn/leftcolumnAPI";
 
 const App = () => {
   return (

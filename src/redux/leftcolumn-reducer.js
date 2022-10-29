@@ -1,8 +1,10 @@
 
 
 const CHANGE_CURDDATE = 'CHANGE_CURDDATE';
+const SET_DDATES = 'SET_DDATES';
 
 export const changeCurDdateActionCreator = (ddate) => ({type: CHANGE_CURDDATE, ddate: ddate});
+export const setDdatesActionCreator = (ddates) => ({type: SET_DDATES, ddates});
 
 
 
@@ -10,12 +12,7 @@ export const changeCurDdateActionCreator = (ddate) => ({type: CHANGE_CURDDATE, d
 
 const initialState = {
   curDdate: new Date('2022-10-22'),
-  DaysData:
-    [
-      {ddate: new Date('2022-10-22')},
-      {ddate: new Date('2022-10-21')},
-      {ddate: new Date('2022-10-20')},
-    ]
+  ddates: []
 };
 
 const LeftColumnReducer = (state = initialState, action) => {
@@ -26,10 +23,14 @@ const LeftColumnReducer = (state = initialState, action) => {
         ...state,
         curDdate: action.ddate
       };
+    case SET_DDATES:
+      return {
+        ...state,
+        ddates: action.ddates
+      };
     default:
       return state;
   }
-
 
 
 

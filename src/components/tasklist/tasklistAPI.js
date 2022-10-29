@@ -37,18 +37,6 @@ class tasklistAPI extends React.Component {
     this.props.getCategories(responseCategories.data);
 
 
-
-    // axios.get(`http://localhost:4000/tasks?ddate=${this.props.curDdate.getFullYear()}${this.props.curDdate.getMonth() + 1}${this.props.curDdate.getDate()}`)
-    //   .then(response => {
-    //     //this.props.toggleIsFetching(false);
-    //     this.props.setTasks(response.data);
-    //   });
-
-    //пока так
-    // axios.get(`http://localhost:4000/category`)
-    //   .then(response => {
-    //     this.props.getCategories(response.data);
-    //   });
   }
 
   toggleTask = (id, value) => {

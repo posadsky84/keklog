@@ -1,34 +1,34 @@
-import './leftcolumn.css';
-import {changeCurDdateActionCreator} from "../../redux/leftcolumn-reducer";
-import {connect} from "react-redux";
 
-let mapStateToProps = (state) => {
-  return {
-    ddates: state.LeftColumn.DaysData,
-    curDdate: state.LeftColumn.curDdate,
+
+const LeftColumn = ({curDdate, changeCurDdate, ddates}) => {
+
+  const curMonth = 9; //переделать на выбор
+  const ddlist = [];
+  const dd = new Date(2022, curMonth, 1); //откуда-то взять год
+  while (dd.getMonth() === curMonth) {
+    ddlist.push(new Date(dd));
+    dd.setDate(dd.getDate() + 1);
   }
-};
 
-let mapDispatchToProps = (dispatch) => {
-  return {
-    changeCurDdate: (ddate) => {dispatch(changeCurDdateActionCreator(ddate))},
-  }
-};
+
+  return (
 
 
 
+  <div className='smart-calendar'>
+    {ddlist.map((ddate) => {
 
+      let findScore = ddates[ddate.toISOString()] && ddates[ddate.toISOString()].score;
 
-const LeftColumn = (props) => {
-  return <div className='leftcolumn'>
-    {props.ddates.map(({ddate}) => {
-      return +ddate === +props.curDdate
-        ? <div className='curDdate'>{ddate.getDate()}.{ddate.getMonth()+1}</div>
-        : <div className='ddate' onClick={() => props.changeCurDdate(ddate)}>{ddate.getDate()}.{ddate.getMonth()+1}</div>;
+      return +ddate === +curDdate
+        ? <div className='ddate curDdate'>{ddate.getDate()}</div>
+        : <div className='ddate'
+               onClick={() => changeCurDdate(ddate)}>{ddate.getDate()}.... {findScore}</div>;
     })
     }
-  </div>;
+  </div>
+)
+
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LeftColumn);
-
+export default LeftColumn;

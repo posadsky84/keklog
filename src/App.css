@@ -8,9 +8,9 @@
     "l m";
 
   grid-template-rows: 10fr 80fr 10fr;
-  grid-template-columns: 2fr 10fr;
+  grid-template-columns: 6fr 10fr;
 
-  width: 1200px;
+
   height: 100vh;
   margin: auto;
 
