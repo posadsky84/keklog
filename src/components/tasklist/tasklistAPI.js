@@ -8,7 +8,7 @@ let mapStateToProps = (state) => {
   return {
     curDdate: state.LeftColumn.curDdate,
     tasks: state.Tasklist.Tasks,
-    categories: state.Tasklist.Categories
+    categories: state.Tasklist.Categories,
   }
 };
 

@@ -1,0 +1,48 @@
+
+.month-picker {
+    display: flex;
+    flex-direction: row;
+    padding-left: 10%;
+    background-color: pink;
+    align-items: baseline;
+
+}
+
+.month-label {
+
+    height: 20px;
+    user-select: none;
+
+}
+
+
+
+.arrow-3 {
+    color: #337AB7;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 18px;
+    height: 18px;
+    line-height: 18px;
+    display: inline-block;
+    margin: 20px;
+}
+.arrow-3 .arrow-3-icon {
+    position: relative;
+    top: -1px;
+    transition: transform 0.3s ease;
+    vertical-align: middle;
+}
+
+.arrow-3:hover .arrow-3-icon:not(.arrow-left) {
+    transform: translate3d(5px, 0, 0);
+}
+
+
+.arrow-left {
+    transform: rotate(180deg);
+}
+
+.arrow-left:hover {
+    transform: translate3d(-5px, 0, 0) rotate(180deg);
+}

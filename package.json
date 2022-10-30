@@ -7,6 +7,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
+    "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.4",
@@ -29,21 +30,48 @@
       "react-app/jest",
       "airbnb"
     ],
-    "rules"  : {
+    "rules": {
       "default-param-last": "off",
-      "arrow-parens": ["error", "as-needed"],
-      "max-len": ["error", 120, 2, { "ignoreComments": true }],
-      "quotes"                                         : ["error", "backtick"],
-      "react/jsx-sort-props"                           : ["warn", {
-        "callbacksLast": false,
-        "shorthandFirst": false,
-        "shorthandLast": false,
-        "ignoreCase": true,
-        "noSortAlphabetically": false,
-        "reservedFirst": false
-      }],
-      "react/jsx-max-props-per-line"                   : ["warn", { "maximum": { "single": 3, "multi": 1 } }],
-      "import-quotes/import-quotes"                      : [1, "single"]
+      "arrow-parens": [
+        "error",
+        "as-needed"
+      ],
+      "max-len": [
+        "error",
+        120,
+        2,
+        {
+          "ignoreComments": true
+        }
+      ],
+      "quotes": [
+        "error",
+        "backtick"
+      ],
+      "react/jsx-sort-props": [
+        "warn",
+        {
+          "callbacksLast": false,
+          "shorthandFirst": false,
+          "shorthandLast": false,
+          "ignoreCase": true,
+          "noSortAlphabetically": false,
+          "reservedFirst": false
+        }
+      ],
+      "react/jsx-max-props-per-line": [
+        "warn",
+        {
+          "maximum": {
+            "single": 3,
+            "multi": 1
+          }
+        }
+      ],
+      "import-quotes/import-quotes": [
+        1,
+        "single"
+      ]
     }
   },
   "browserslist": {

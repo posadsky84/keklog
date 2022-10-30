@@ -18,10 +18,21 @@
 
 }
 
-.curDdate {
+.ddate:hover {
+    background-color: lightgoldenrodyellow;
+}
+
+.ddate:nth-child(7n-1), .ddate:nth-child(7n) {
     color: red;
 }
 
+.curDdate,.curDdate:hover {
+    background-color: #337AB7;
+}
+
+
 .exist-ddate {
     background-color: lightskyblue;
+    color: black;
+    font-weight: bold;
 }
