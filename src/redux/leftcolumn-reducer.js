@@ -13,14 +13,12 @@ export const changeMonthActionCreator = (diff) => ({type: CHANGE_MONTH, diff});
 
 
 const initialState = {
-  curDdate: new Date(),
+  curDdate: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(), 0, 0, 0, 0),
   ddates:  [],
   curMonth: new Date(new Date().getFullYear(), new Date().getMonth(), 1, 0, 0, 0, 0)
 };
 
 const LeftColumnReducer = (state = initialState, action) => {
-
-
 
   switch (action.type) {
     case CHANGE_CURDDATE:   //пока не расписываем, не знаю как будет работать
@@ -34,7 +32,6 @@ const LeftColumnReducer = (state = initialState, action) => {
         ddates: action.ddates
       };
     case CHANGE_MONTH:
-      debugger;
       return {
         ...state,
         curMonth: new Date(state.curMonth.setMonth(state.curMonth.getMonth() + action.diff)),

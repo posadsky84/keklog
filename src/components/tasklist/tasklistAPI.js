@@ -1,4 +1,4 @@
-import {setTasks, toggleTask, setScore, getCategories, setCategory} from "../../redux/tasklist-reducer";
+import {setTasks, toggleTask, setScore, getCategories, setCategory, addTask} from "../../redux/tasklist-reducer";
 import Tasklist from "./tasklist";
 import {connect} from "react-redux";
 import React from "react";
@@ -30,7 +30,7 @@ class tasklistAPI extends React.Component {
 
 
   loadtasks = async () => {
-    const responseTasks = await axios.get(`http://localhost:4000/tasks?ddate=${this.props.curDdate.getFullYear()}${this.props.curDdate.getMonth() + 1}${this.props.curDdate.getDate()}`);
+    const responseTasks = await axios.get(`http://localhost:4000/tasks?ddate=${this.props.curDdate.getFullYear()}.${this.props.curDdate.getMonth() + 1}.${this.props.curDdate.getDate()}`);
     this.props.setTasks(responseTasks.data);
 
     const responseCategories = await axios.get(`http://localhost:4000/category`);
@@ -63,12 +63,19 @@ class tasklistAPI extends React.Component {
 
     const response = await axios.put(`http://localhost:4000/taskcategory/${id}`, {category: category});
     if (response.status === 200) {
-      debugger;
       this.props.setCategory(id, category);
     }
-
-
   }
+
+  postNewTask = async (ddate, name) => {
+    const response = await axios.post(`http://localhost:4000/newtask/`,
+      {ddate: ddate.getFullYear()+'.'+(ddate.getMonth()+1)+'.'+ddate.getDate(), name});
+
+    if (response.status === 200) {
+      this.props.addTask(response.data);
+    }
+  }
+
 
 
 
@@ -85,6 +92,7 @@ class tasklistAPI extends React.Component {
                 toggleTask={this.toggleTask}
                 setScore={this.setScore}
                 setCategory={this.setCategory}
+                postNewTask={this.postNewTask}
       />
 
     </div>
@@ -93,6 +101,6 @@ class tasklistAPI extends React.Component {
 
 }
 
-export default connect(mapStateToProps,{toggleTask, setTasks, setScore, getCategories, setCategory})(tasklistAPI);
+export default connect(mapStateToProps,{toggleTask, setTasks, setScore, getCategories, setCategory, addTask})(tasklistAPI);
 
 

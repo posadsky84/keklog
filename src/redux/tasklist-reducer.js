@@ -3,12 +3,14 @@ const SET_TASKS = `SET_TASKS`;
 const SET_SCORE = `SET_SCORE`;
 const GET_CATEGORIES = `GET_CATEGORIES`;
 const SET_CATEGORY = `SET_CATEGORY`;
+const ADD_TASK = 'ADD_TASK';
 
 export const toggleTask = (id, value) => ({ type: TOGGLE_TASK, id, value });
 export const setTasks = tasks => ({ type: SET_TASKS, tasks });
 export const setScore = (id, score) => ({ type: SET_SCORE, id, score });
 export const getCategories = categories => ({ type: GET_CATEGORIES, categories });
 export const setCategory = (id, category) => ({ type: SET_CATEGORY, id, category });
+export const addTask = (task) => ({ type: ADD_TASK, task });
 
 const initialState = {
   Tasks: [],
@@ -41,6 +43,11 @@ const TasklistReducer = (state = initialState, action) => {
       return {
         ...state,
         Categories: action.categories,
+      };
+    case ADD_TASK:
+      return {
+        ...state,
+        Tasks: [...state.Tasks, action.task],
       };
     default:
       return state;

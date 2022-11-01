@@ -11,15 +11,13 @@ const Score = ({id, score, setScore}) => {
 
 
   const cancelEditing = () => {
-    // document.removeEventListener(`mousedown`, handleClickOutside);
     setIsEditing(false);
     setScoreValue(score);
   }
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      console.log(`handleClickOutside`, { inputRef }, inputRef && !inputRef?.current?.contains(event.target));
-      if (inputRef && !inputRef?.current?.contains(event.target)) {
+      if (inputRef && !inputRef.current?.contains(event.target)) {
         cancelEditing();
       }
     }
@@ -36,14 +34,12 @@ const Score = ({id, score, setScore}) => {
 
 
   const commitEditing = () => {
-    // document.removeEventListener(`mousedown`, handleClickOutside);
     setScore(id, scoreValue);
     setIsEditing(false);
   }
 
   const onScoreClick = () => {
     setIsEditing(true);
-    // document.addEventListener(`mousedown`, handleClickOutside);
   }
 
   return isEditing
