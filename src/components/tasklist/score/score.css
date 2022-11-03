@@ -6,6 +6,8 @@
     line-height: 1;
     cursor: pointer;
     transition: all 0.1s ease-in-out;
+    height: 16px;
+    min-width: 16px;
 }
 
 .score:hover {

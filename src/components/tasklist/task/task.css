@@ -1,0 +1,139 @@
+.task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 500px;
+    border-bottom: 1px solid #EBECF0;
+    padding: 8px;
+    transition: all 0.1s ease-in-out;
+
+}
+
+.deleting-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    max-width: 500px;
+    border-bottom: 1px solid #EBECF0;
+    padding: 8px;
+    transition: all 0.1s ease-in-out;
+}
+
+.deleting-spinner {
+    margin-left: 50px;
+}
+
+.del-cancel-button {
+    margin-left: 20px;
+    color: blue;
+    font-size: smaller;
+    text-decoration-line: underline;
+    cursor: pointer;
+}
+
+.task-item:first-child {
+    border-top: 1px solid #EBECF0;
+}
+
+.task-item:hover {
+    background-color: #FAFBFC;
+}
+
+.task-item:hover .del-button {
+    opacity: 1;
+
+}
+
+input[type="checkbox"] {
+    position: absolute;
+    left: -9999px;
+}
+
+input[type="checkbox"] + label {
+    display: inline-block;
+    position: relative;
+    padding-left: 28px;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+input[type="checkbox"] + label:before {
+    content: "";
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #dddddd;
+    background-color: #ffffff;
+}
+
+input[type="checkbox"] + label:before {
+    border-radius: 2px;
+}
+
+
+input[type="checkbox"] + label:after {
+    content: "";
+    position: absolute;
+    -webkit-transition: all 0.0s ease;
+    -moz-transition: all 0.0s ease;
+    -o-transition: all 0.0s ease;
+    transition: all 0.0s ease;
+}
+
+input[type="checkbox"] + label:after {
+    left: 3px;
+    top: 4px;
+    width: 10px;
+    height: 5px;
+    border-radius: 1px;
+    border-left: 4px solid #e145a3;
+    border-bottom: 4px solid #e145a3;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+
+input[type="checkbox"]:not(:checked) + label:after {
+    opacity: 0;
+}
+
+input[type="checkbox"]:checked + label:after {
+    opacity: 1;
+}
+
+.del-button {
+    padding: 4px;
+    position: relative;
+    opacity: 0;
+    transition: all 0.1s ease-in-out;
+    margin-left: 4px;
+    cursor: pointer;
+}
+
+.del-button:hover {
+    transform: scale(1.2);
+}
+
+.del-line-1 {
+    background-color: #e145a3;
+    height: 2px;
+    width: 16px;
+    transform: rotate(-45deg);
+    transition: all 0.1s ease-in-out;
+}
+
+.del-line-2 {
+    background-color: #e145a3;
+    height: 2px;
+    width: 16px;
+    transform: rotate(45deg);
+    position: absolute;
+    bottom: 4px;
+    transition: all 0.1s ease-in-out;
+}
+

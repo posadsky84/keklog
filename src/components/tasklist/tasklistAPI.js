@@ -1,4 +1,12 @@
-import {setTasks, toggleTask, setScore, getCategories, setCategory, addTask} from "../../redux/tasklist-reducer";
+import {
+  setTasks,
+  toggleTask,
+  setScore,
+  getCategories,
+  setCategory,
+  addTask,
+  deleteTask
+} from "../../redux/tasklist-reducer";
 import Tasklist from "./tasklist";
 import {connect} from "react-redux";
 import React from "react";
@@ -76,7 +84,14 @@ class tasklistAPI extends React.Component {
     }
   }
 
+  deleteTask = async (id) => {
+    const response = await axios.delete(`http://localhost:4000/deletetask/${id}`);
 
+    if (response.status === 200) {
+      this.props.deleteTask(id);
+    }
+
+  }
 
 
 
@@ -93,6 +108,7 @@ class tasklistAPI extends React.Component {
                 setScore={this.setScore}
                 setCategory={this.setCategory}
                 postNewTask={this.postNewTask}
+                deleteTask={this.deleteTask}
       />
 
     </div>
@@ -101,6 +117,6 @@ class tasklistAPI extends React.Component {
 
 }
 
-export default connect(mapStateToProps,{toggleTask, setTasks, setScore, getCategories, setCategory, addTask})(tasklistAPI);
+export default connect(mapStateToProps,{toggleTask, setTasks, setScore, getCategories, setCategory, addTask, deleteTask})(tasklistAPI);
 
 
