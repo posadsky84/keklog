@@ -43,6 +43,10 @@
     opacity: 1;
 }
 
+.task-item:hover .add-duration{
+    opacity: 1;
+}
+
 .task-item:hover .del-button {
     opacity: 1;
 

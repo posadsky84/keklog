@@ -1,0 +1,21 @@
+.auth-page {
+
+  grid-area: m;
+
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+
+
+}
+
+.auth-block {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 12px;
+}

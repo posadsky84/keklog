@@ -1,4 +1,55 @@
 .header {
     grid-area: h;
-    background-color: beige;
+    border-bottom: 1px solid #EBECF0;
+    box-shadow: 5px 3px 24px -9px rgba(34, 60, 80, 0.2);
+    display: flex;
+    padding: 12px 24px;
+
+    align-items: center;
+
+
 }
+
+.logo-box {
+    font-family: 'Finlandica', sans-serif;
+}
+
+.logo-box-1 {
+    font-size: 30px;
+}
+
+.logo-box-2 {
+    font-size: 20px;
+}
+
+.nav-header {
+    margin-left: 120px;
+}
+
+.link-header {
+    margin-right: 24px;
+    font-weight: 500;
+    text-decoration: none;
+    color: #929fb9;
+    transition: all 0.1s ease-in-out;
+    font-size: 16px;
+
+
+}
+.link-header:hover {
+    color: #596A8C;
+}
+
+.link-header-active, .link-header-active:hover {
+    color: #22284B;
+}
+
+.logout {
+    cursor: pointer;
+    margin-left: auto;
+}
+
+
+
+
+

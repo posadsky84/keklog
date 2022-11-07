@@ -3,6 +3,8 @@ import "./score.css";
 
 const Score = ({id, score, setScore}) => {
 
+
+
   const [isEditing, setIsEditing] = useState(false);
   const [scoreValue, setScoreValue] = useState(score);
 
@@ -52,7 +54,6 @@ const Score = ({id, score, setScore}) => {
           autoFocus
           onChange={(event) => setScoreValue(event.target.value)}
           onKeyDown={(e)=>{
-            debugger;
             if (e.key === "Enter") {
               commitEditing();
             } else if (e.key === "Escape") {

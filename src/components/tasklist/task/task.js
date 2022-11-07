@@ -2,9 +2,10 @@ import './task.css';
 import Category from "../category/category";
 import Score from "../score/score";
 import {useState} from "react";
+import Duration from "../duration/duration";
 
 
-const Task = ({id, name, checked, score, category, categories, setCategory, setScore, toggleTask, deleteTask}) => {
+const Task = ({id, name, checked, score, category, duration, categories, setCategory, setScore, setDuration, toggleTask, deleteTask}) => {
 
   const [isDeleting, setIsDeleting] = useState(false);
   const [timerId, setTimerId] = useState(null);
@@ -34,6 +35,7 @@ const Task = ({id, name, checked, score, category, categories, setCategory, setS
         />
         <label htmlFor={`cb${id}`}>{name}</label>
         <Category taskId={id} categoryId={category} categories={categories} setCategory={setCategory}/>
+        <Duration id={id} duration={duration} setDuration={setDuration}/>
         <Score id={id} score={score} setScore={setScore}/>
         <div className='del-button' onClick={() => goDeleteTask(id)}>
           <div className='del-line-1'/>

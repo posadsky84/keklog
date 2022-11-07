@@ -1,0 +1,56 @@
+.duration {
+   display: flex;
+   margin-right: 20px;
+   background-color: #FFEBE6;
+   padding: 4px;
+   border-radius: 4px;
+   cursor: pointer;
+   align-items: center;
+
+}
+
+.clockPic {
+   height: 12px;
+   width: 12px;
+
+}
+
+.duration-label {
+   font-size: 12px;
+   margin-left: 4px;
+
+}
+
+.add-duration {
+   opacity: 0;
+   background-color: #DFE1E6;
+}
+
+
+
+.duration-input-wrapper {
+   display: flex;
+   position: relative;
+   width: 120px;
+   background-color: #DFE1E6;
+   align-items: center;
+}
+
+.duration-min-label {
+   font-size: 12px;
+   color: grey;
+   margin-right: 4px;
+   margin-left: 4px;
+}
+
+.duration-input {
+   width: 100%;
+
+}
+
+.duration-buttons {
+   position: absolute;
+   display: flex;
+   top: calc(100% + 4px);
+   right: 0;
+}

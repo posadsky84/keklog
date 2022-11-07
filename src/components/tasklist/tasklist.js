@@ -9,16 +9,18 @@ const Tasklist = (props) => {
     <>
       <h2 className='ddate-label'>{props.curDdate.getDate()}.{props.curDdate.getMonth() + 1}</h2>
       <div className='task-list'>
-        {props.tasks.map(({id, name, checked, score, category}) => (
+        {props.tasks.map(({id, name, checked, score, category, duration}) => (
           <Task key={id}
                 id={id}
                 name={name}
                 checked={checked}
                 score={score}
                 category={category}
+                duration={duration}
                 categories={props.categories}
                 setCategory={props.setCategory}
                 setScore={props.setScore}
+                setDuration={props.setDuration}
                 toggleTask={props.toggleTask}
                 deleteTask={props.deleteTask}
           />

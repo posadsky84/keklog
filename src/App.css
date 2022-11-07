@@ -1,7 +1,7 @@
 .app-wrapper {
   display: grid;
 
-  padding: 10px;
+
 
   grid-template-areas:
     "h h"
@@ -16,7 +16,9 @@
 
 }
 
-
+* {
+  font-family: 'Roboto', sans-serif;
+}
 
 
 
