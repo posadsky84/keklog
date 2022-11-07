@@ -39,6 +39,10 @@
     background-color: #FAFBFC;
 }
 
+.task-item:hover .add-category-label{
+    opacity: 1;
+}
+
 .task-item:hover .del-button {
     opacity: 1;
 

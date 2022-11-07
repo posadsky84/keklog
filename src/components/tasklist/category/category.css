@@ -4,7 +4,15 @@
     border-radius: 4px;
     cursor: pointer;
     white-space: nowrap;
+    transition: all 0.1s ease-in-out;
 }
+
+.add-category-label {
+    background-color: #DFE1E6;
+    opacity: 0;
+}
+
+
 
 .category-editor-wrapper {
     position: relative;

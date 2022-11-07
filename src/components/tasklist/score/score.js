@@ -49,7 +49,16 @@ const Score = ({id, score, setScore}) => {
           className='score-input'
           type="number"
           value={scoreValue}
+          autoFocus
           onChange={(event) => setScoreValue(event.target.value)}
+          onKeyDown={(e)=>{
+            debugger;
+            if (e.key === "Enter") {
+              commitEditing();
+            } else if (e.key === "Escape") {
+              cancelEditing();
+            }
+          }}
         />
         <div className='score-buttons'>
           <button onClick={commitEditing}>V</button>

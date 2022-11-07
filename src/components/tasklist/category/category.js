@@ -44,9 +44,10 @@ const Category = ({taskId, categoryId, categories, setCategory}) => {
   let cat = categories.find(item => item.id === categoryId);
 
   return (
+    <>
     <div className="category-editor-wrapper" ref={dropDownRef}>
-      <div className="category-label" style={{backgroundColor: cat?.color}} onClick={onCategoryClick}>
-        {cat?.name}
+      <div className={categoryId ? "category-label" : "category-label add-category-label"} style={{backgroundColor: cat?.color}} onClick={onCategoryClick}>
+        {cat?.name || "+ кат"}
       </div>
       {isEditing && (
         <div>
@@ -57,14 +58,14 @@ const Category = ({taskId, categoryId, categories, setCategory}) => {
               </div>
             ))}
             <div className="borderline"/>
-            <div key="0" className="category-label" style={{backgroundColor: "#DFE1E6"}} onClick={() => {}}>
+            <div key="0" className="category-label" style={{backgroundColor: "#DFE1E6"}} onClick={() => {onSelectCat(null)}}>
               нет
             </div>
           </div>
         </div>
       )}
-
     </div>
+    </>
   )
 
 
