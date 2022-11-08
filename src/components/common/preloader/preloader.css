@@ -4,7 +4,7 @@
 }
 
 .movepick {
-    height: 32px;
-    width: 32px;
+    height: 24px;
+    width: 24px;
     animation: loading 1s infinite linear;
 }

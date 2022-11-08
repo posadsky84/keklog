@@ -61,8 +61,18 @@
   padding: 8px 24px;
   transition: all 0.1s ease-in-out;
   cursor: pointer;
+  max-height: 39px;
 }
 
 .auth-button:hover {
   background-color: #28a49d;
+}
+
+.auth-button:disabled {
+  background-color: darkgrey;
+}
+
+.error-label {
+  color: red;
+
 }

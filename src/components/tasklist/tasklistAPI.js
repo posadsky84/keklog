@@ -10,7 +10,7 @@ import {
 import Tasklist from "./tasklist";
 import {connect} from "react-redux";
 import React from "react";
-import axios from "axios";
+import {api} from "../../api";
 
 let mapStateToProps = (state) => {
   return {
@@ -38,10 +38,10 @@ class tasklistAPI extends React.Component {
 
 
   loadtasks = async () => {
-    const responseTasks = await axios.get(`http://localhost:4000/tasks?ddate=${this.props.curDdate.getFullYear()}.${this.props.curDdate.getMonth() + 1}.${this.props.curDdate.getDate()}`);
+    const responseTasks = await api.get(`/tasks?ddate=${this.props.curDdate.getFullYear()}.${this.props.curDdate.getMonth() + 1}.${this.props.curDdate.getDate()}`);
     this.props.setTasks(responseTasks.data);
 
-    const responseCategories = await axios.get(`http://localhost:4000/category`);
+    const responseCategories = await api.get(`/category`);
     this.props.getCategories(responseCategories.data);
 
 
@@ -49,7 +49,7 @@ class tasklistAPI extends React.Component {
 
   toggleTask = (id, value) => {
 
-    axios.put(`http://localhost:4000/taskchecked/${id}`, {checked: value})
+    api.put(`/taskchecked/${id}`, {checked: value})
       .then(response => {
         if (response.status === 200) {
           this.props.toggleTask(id, value);
@@ -59,7 +59,7 @@ class tasklistAPI extends React.Component {
 
   setScore = (id, score) => {
 
-    axios.put(`http://localhost:4000/taskscore/${id}`, {score: score})
+    api.put(`/taskscore/${id}`, {score: score})
       .then(response => {
         if (response.status === 200) {
           this.props.setScore(id, score);
@@ -69,7 +69,7 @@ class tasklistAPI extends React.Component {
 
   setDuration = (id, duration) => {
 
-    axios.put(`http://localhost:4000/taskduration/${id}`, {duration: duration})
+    api.put(`/taskduration/${id}`, {duration: duration})
       .then(response => {
         if (response.status === 200) {
           this.props.setDuration(id, duration);
@@ -80,14 +80,14 @@ class tasklistAPI extends React.Component {
 
   setCategory = async (id, category) => {
 
-    const response = await axios.put(`http://localhost:4000/taskcategory/${id}`, {category: category});
+    const response = await api.put(`/taskcategory/${id}`, {category: category});
     if (response.status === 200) {
       this.props.setCategory(id, category);
     }
   }
 
   postNewTask = async (ddate, name) => {
-    const response = await axios.post(`http://localhost:4000/newtask/`,
+    const response = await api.post(`/newtask/`,
       {ddate: ddate.getFullYear()+'.'+(ddate.getMonth()+1)+'.'+ddate.getDate(), name});
 
     if (response.status === 200) {
@@ -96,7 +96,7 @@ class tasklistAPI extends React.Component {
   }
 
   deleteTask = async (id) => {
-    const response = await axios.delete(`http://localhost:4000/deletetask/${id}`);
+    const response = await api.delete(`/deletetask/${id}`);
 
     if (response.status === 200) {
       this.props.deleteTask(id);

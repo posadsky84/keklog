@@ -3,5 +3,12 @@
     display: flex;
     border-top: 1px solid #EBECF0;
     box-shadow: 5px 3px 24px -9px rgba(34, 60, 80, 0.2);
-    padding: 4px;
+    padding: 12px 24px;
+    justify-content: center;
+    color: darkgrey;
+}
+
+.git-link {
+    margin-left: 10px;
+    color: deepskyblue;
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 import './leftcolumn.css';
 import {
   changeCurDdateActionCreator,
@@ -8,7 +9,7 @@ import {
 } from "../../redux/leftcolumn-reducer";
 import {connect} from "react-redux";
 import LeftColumn from "./leftcolumn";
-import axios from "axios";
+import {api} from "../../api";
 
 let mapStateToProps = (state) => {
   return {
@@ -40,7 +41,7 @@ class LeftColumnAPI extends React.Component {
     let ddateb = '20221001';
     let ddatee = '20221031';
 
-    const responseDdates = await axios.get(`http://localhost:4000/ddates?ddateb=${ddateb}&ddatee=${ddatee}`);
+    const responseDdates = await api.get(`/ddates?ddateb=${ddateb}&ddatee=${ddatee}`);
     this.props.setDdates(responseDdates.data.reduce((res, item) => ({...res, [item.ddate]: {score: item.score}}), {}));
 
 
