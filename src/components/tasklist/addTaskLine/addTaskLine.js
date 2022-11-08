@@ -61,6 +61,9 @@ const AddTaskLine = (props) => {
                 props.postNewTask(props.curDdate, addTaskValue);
                 cancelEditing();
                 setAddTaskValue('');
+              } else if (e.key === "Escape") {
+                cancelEditing();
+                setAddTaskValue('');
               }
             }}
 

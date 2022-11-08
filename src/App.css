@@ -5,9 +5,10 @@
 
   grid-template-areas:
     "h h"
-    "l m";
+    "l m"
+    "f f";
 
-  grid-template-rows: 10fr 80fr 10fr;
+  grid-template-rows: 10fr 80fr 2fr;
   grid-template-columns: 6fr 10fr;
 
 

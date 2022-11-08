@@ -39,10 +39,9 @@ const Duration = ({id, duration, setDuration}) => {
 
   return !editing ?
     (
-      <div className={value ? "duration" : "duration add-duration"}>
+      <div className={value ? "duration" : "duration add-duration"} onClick={() => setEditing(true)}>
         <img src={clockPic} className='clockPic' alt=''/>
-        <div className='duration-label'
-             onClick={() => setEditing(true)}>{value ? _.round(value / 60, 2) + " h" : "..."} </div>
+        <div className='duration-label'>{value ? _.round(value / 60, 2) + " h" : "..."} </div>
       </div>
 
     ) : (<div className='duration-input-wrapper' ref={inputRef} >
