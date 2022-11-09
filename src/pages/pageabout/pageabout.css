@@ -1,0 +1,25 @@
+.page-about {
+    margin: 0 auto;
+    max-width: 1080px;
+    text-align: justify;
+    color: #222222;
+    padding: 16px;
+
+}
+
+.nomad-pic-wrapper {
+    float: left;
+    max-width: 35%;
+    margin: 16px;
+
+}
+
+.nomad-pic {
+    width: 100%;
+}
+
+.nomad-pic-label {
+    font-size: 12px;
+    margin-top: 0;
+    color: #596A8C;
+}

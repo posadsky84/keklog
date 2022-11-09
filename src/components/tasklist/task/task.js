@@ -33,7 +33,7 @@ const Task = ({id, name, checked, score, category, duration, categories, setCate
           onClick={() => toggleTask(id, !checked)}
           checked={checked}
         />
-        <label htmlFor={`cb${id}`}>{name}</label>
+        <label htmlFor={`cb${id}`} title={name}>{name}</label>
         <Category taskId={id} categoryId={category} categories={categories} setCategory={setCategory}/>
         <Duration id={id} duration={duration} setDuration={setDuration}/>
         <Score id={id} score={score} setScore={setScore}/>

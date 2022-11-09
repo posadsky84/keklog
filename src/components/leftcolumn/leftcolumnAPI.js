@@ -22,14 +22,17 @@ let mapStateToProps = (state) => {
 //избавиться от процедуры когда все заработает
 let mapDispatchToProps = (dispatch) => {
   return {
-    changeCurDdate: (ddate) => {dispatch(changeCurDdateActionCreator(ddate))},
-    setDdates: (ddates) => {dispatch(setDdatesActionCreator(ddates))},
-    changeMonth: (diff) => {dispatch(changeMonthActionCreator(diff))}
+    changeCurDdate: (ddate) => {
+      dispatch(changeCurDdateActionCreator(ddate))
+    },
+    setDdates: (ddates) => {
+      dispatch(setDdatesActionCreator(ddates))
+    },
+    changeMonth: (diff) => {
+      dispatch(changeMonthActionCreator(diff))
+    }
   }
 };
-
-
-
 
 
 class LeftColumnAPI extends React.Component {
@@ -47,24 +50,29 @@ class LeftColumnAPI extends React.Component {
 
   loadDdates = async () => {
 
-    const lastMonthDay = new Date(this.props.curMonth.getFullYear(), this.props.curMonth.getMonth()+1, 0);
+    const lastMonthDay = new Date(this.props.curMonth.getFullYear(), this.props.curMonth.getMonth() + 1, 0);
 
-    const ddateb = `${new Date(this.props.curMonth).getFullYear()}.${new Date(this.props.curMonth).getMonth()+1}.${new Date(this.props.curMonth).getDate()}`;
-    const ddatee = `${new Date(lastMonthDay).getFullYear()}.${new Date(lastMonthDay).getMonth()+1}.${new Date(lastMonthDay).getDate()}`;
+    const ddateb = `${new Date(this.props.curMonth).getFullYear()}.${new Date(this.props.curMonth).getMonth() + 1}.${new Date(this.props.curMonth).getDate()}`;
+    const ddatee = `${new Date(lastMonthDay).getFullYear()}.${new Date(lastMonthDay).getMonth() + 1}.${new Date(lastMonthDay).getDate()}`;
 
     const responseDdates = await api.get(`/ddates?ddateb=${ddateb}&ddatee=${ddatee}`);
 
-    this.props.setDdates(responseDdates.data.reduce((res, item) => ({...res, [item.monthday]: {score: item.score}}), {}));
+    this.props.setDdates(responseDdates.data.reduce((res, item) => ({
+      ...res,
+      [item.monthday]: {score: item.score}
+    }), {}));
   }
 
 
   render() {
 
-    return <LeftColumn curDdate={this.props.curDdate}
-                       changeCurDdate={this.props.changeCurDdate}
-                       ddates={this.props.ddates}
-                       curMonth={this.props.curMonth}
-                       changeMonth={this.props.changeMonth}
+    return <LeftColumn
+      className={this.props.className}
+      curDdate={this.props.curDdate}
+      changeCurDdate={this.props.changeCurDdate}
+      ddates={this.props.ddates}
+      curMonth={this.props.curMonth}
+      changeMonth={this.props.changeMonth}
     />;
   }
 }

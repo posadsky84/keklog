@@ -1,6 +1,6 @@
 import './pageauth.css';
 import React from 'react';
-import Preloader from "../common/preloader/preloader";
+import Preloader from "../../components/common/preloader/preloader";
 import {api} from "../../api";
 
 

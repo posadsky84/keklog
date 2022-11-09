@@ -1,0 +1,14 @@
+.page-calendar {
+    display: flex;
+    margin: 0 auto;
+    max-width: 1500px;
+    width: 100%;
+}
+
+.left-column {
+    flex-basis: 350px;
+}
+
+.task-list-wrapper {
+    flex-grow: 1;
+}

@@ -1,16 +1,6 @@
 .app-wrapper {
-  display: grid;
-
-
-
-  grid-template-areas:
-    "h h"
-    "l m"
-    "f f";
-
-  grid-template-rows: 10fr 80fr 2fr;
-  grid-template-columns: 3fr 10fr;
-
+  display: flex;
+  flex-direction: column;
 
   height: 100vh;
   margin: auto;

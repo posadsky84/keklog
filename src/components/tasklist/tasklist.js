@@ -6,7 +6,7 @@ import Task from "./task/task";
 
 const Tasklist = (props) => {
   return (
-    <>
+    <div className={props.className}>
       <h2 className='ddate-label'>{props.curDdate.getDate()}.{props.curDdate.getMonth() + 1}</h2>
       <div className='task-list'>
         {props.tasks.map(({id, name, checked, score, category, duration}) => (
@@ -27,7 +27,7 @@ const Tasklist = (props) => {
         ))}
         <AddTaskLine postNewTask={props.postNewTask} curDdate={props.curDdate} />
       </div>
-    </>);
+    </div>);
 }
 
 

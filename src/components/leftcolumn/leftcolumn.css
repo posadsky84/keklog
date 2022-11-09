@@ -1,6 +1,5 @@
 .smart-calendar {
     display: flex;
-    grid-area: l;
     padding: 20px;
     flex-wrap: wrap;
     align-content: start;
@@ -22,8 +21,12 @@
 
 }
 
-.ddate:hover {
+.ddate:not(:empty):hover {
     background-color: lightgoldenrodyellow;
+}
+
+.ddate:empty {
+    cursor: default;
 }
 
 .ddate:nth-child(7n-1), .ddate:nth-child(7n) {
@@ -31,7 +34,7 @@
 }
 
 .curDdate,.curDdate:hover {
-    background-color: #337AB7;
+    background-color: #337AB7 !important;
 }
 
 
@@ -50,3 +53,8 @@
     transform: translateX(-50%);
     bottom: 1px;
 }
+
+.curDdate:after {
+    background-color: white;
+}
+

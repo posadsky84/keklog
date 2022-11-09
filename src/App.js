@@ -3,9 +3,11 @@ import Tasklist from "./components/tasklist/tasklistAPI";
 import Header from "./components/header/header";
 import Leftcolumn from "./components/leftcolumn/leftcolumnAPI";
 import {Route, Routes} from "react-router-dom";
-import PageAuth from "./components/pageauth/pageauth";
+import PageAuth from "./pages/pageauth/pageauth";
 import Footer from "./components/footer/footer";
 import {isAuth} from "./helper";
+import PageCalendar from "./pages/pagecalendar/pagecalendar";
+import PageAbout from "./pages/pageabout/pageabout";
 
 
 const App = () => {
@@ -18,9 +20,9 @@ const App = () => {
       {isLoggedIn ?
         (
           <Routes>
-            <Route path='/' element={<><Leftcolumn/><Tasklist/></>}/>
+            <Route path='/' element={<PageCalendar />}/>
             <Route path='/admin' element={<div>admin</div>}/>
-            <Route path='/reports' element={<div>reports</div>}/>
+            <Route path='/about' element={<PageAbout />}/>
           </Routes>
         ) : (
           <PageAuth/>

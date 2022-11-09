@@ -2,7 +2,7 @@ import MonthPicker from "./monthpicker/monthpicker";
 import _ from "lodash";
 
 
-const LeftColumn = ({curDdate, changeCurDdate, ddates, curMonth, changeMonth}) => {
+const LeftColumn = ({className, curDdate, changeCurDdate, ddates, curMonth, changeMonth}) => {
 
   let skipDays = curMonth.getDay();
   skipDays === 0 ? skipDays = 6 : skipDays--;
@@ -19,7 +19,7 @@ const LeftColumn = ({curDdate, changeCurDdate, ddates, curMonth, changeMonth}) =
 
   return (
 
-    <div>
+    <div className={className}>
       <MonthPicker curMonth={curMonth} changeMonth={changeMonth}/>
       <div className='smart-calendar'>
         {_.times(skipDays, () => <div className='ddate'></div>)}

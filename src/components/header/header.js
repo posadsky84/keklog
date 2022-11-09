@@ -30,9 +30,9 @@ const Header = ({isLoggedIn}) => {
           </NavLink>
           <NavLink
             className={({isActive}) => (isActive ? 'link-header link-header-active' : 'link-header')}
-            to='/reports'
+            to='/about'
           >
-            Отчеты
+            Обо мне
           </NavLink>
         </nav>
         <div className='link-header logout' onClick={logout}>Выход</div>

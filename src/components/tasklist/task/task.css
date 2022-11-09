@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 500px;
+    max-width: 700px;
     border-bottom: 1px solid #EBECF0;
     padding: 8px;
     transition: all 0.1s ease-in-out;
@@ -63,6 +63,9 @@ input[type="checkbox"] + label {
     padding-left: 28px;
     line-height: 20px;
     cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 input[type="checkbox"] + label:before {

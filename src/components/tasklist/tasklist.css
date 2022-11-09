@@ -1,11 +1,12 @@
 .task-list {
-    grid-area: m;
     padding: 20px;
 }
 
 
 .ddate-label {
-    background-color: lightskyblue;
-    padding-left: 20px;
+    padding-left: 28px;
+    border-bottom: 4px solid lightskyblue;
+    max-width: calc(700px + 2 * 28px);
+    padding-bottom: 4px;
 }
 

@@ -23,8 +23,6 @@ let mapStateToProps = (state) => {
 };
 
 
-
-
 class tasklistAPI extends React.Component {
 
 
@@ -90,7 +88,7 @@ class tasklistAPI extends React.Component {
 
   postNewTask = async (ddate, name) => {
     const response = await api.post(`/newtask/`,
-      {ddate: ddate.getFullYear()+'.'+(ddate.getMonth()+1)+'.'+ddate.getDate(), name});
+      {ddate: ddate.getFullYear() + '.' + (ddate.getMonth() + 1) + '.' + ddate.getDate(), name});
 
     if (response.status === 200) {
       this.props.addTask(response.data);
@@ -112,32 +110,33 @@ class tasklistAPI extends React.Component {
   }
 
 
-
   render() {
 
     //{this.props.isFetching ? <Preloader /> : null}     можно потом добавить прелоадер
 
-    return <div>
+    return (
 
-      <Tasklist curDdate={this.props.curDdate}
-                tasks={this.props.tasks}
-                categories={this.props.categories}
-                toggleTask={this.toggleTask}
-                setScore={this.setScore}
-                setDuration={this.setDuration}
-                setCategory={this.setCategory}
-                postNewTask={this.postNewTask}
-                deleteTask={this.deleteTask}
+      <Tasklist
+        className={this.props.className}
+        curDdate={this.props.curDdate}
+        tasks={this.props.tasks}
+        categories={this.props.categories}
+        toggleTask={this.toggleTask}
+        setScore={this.setScore}
+        setDuration={this.setDuration}
+        setCategory={this.setCategory}
+        postNewTask={this.postNewTask}
+        deleteTask={this.deleteTask}
       />
-
-    </div>
+    );
 
   }
 
 }
 
 export default connect(mapStateToProps,
-  {toggleTask,
+  {
+    toggleTask,
     setTasks,
     setScore,
     getCategories,

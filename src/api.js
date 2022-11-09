@@ -5,7 +5,7 @@ import _ from "lodash";
 
 export const api = axios.create(
   {
-    baseURL: `http://localhost:4000`,
+    baseURL: `http://keklog.fun:4000`,
     validateStatus: (status) => (status >= 200 && status < 500),
     timeout: 15000
   });
