@@ -26,10 +26,8 @@ const LeftColumn = ({curDdate, changeCurDdate, ddates, curMonth, changeMonth}) =
         {ddlist.map((ddate) => {
 
 
-
-
-          let findDdate = ddates[ddate.toISOString()];
-          let findScore = findDdate && ddates[ddate.toISOString()].score;
+          let findDdate = ddates[ddate.getDate()];
+          let findScore = findDdate && ddates[ddate.getDate()].score;
 
           return +ddate === +curDdate
             ? <div className={`ddate curDdate ${findDdate ? `exist-ddate` : ``}`}>{ddate.getDate()}</div>

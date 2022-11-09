@@ -35,21 +35,26 @@ let mapDispatchToProps = (dispatch) => {
 class LeftColumnAPI extends React.Component {
 
 
+  componentDidMount() {
+    this.loadDdates();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.curMonth !== this.props.curMonth) {
+      this.loadDdates();
+    }
+  }
 
   loadDdates = async () => {
 
-    let ddateb = '20221001';
-    let ddatee = '20221031';
+    const lastMonthDay = new Date(this.props.curMonth.getFullYear(), this.props.curMonth.getMonth()+1, 0);
+
+    const ddateb = `${new Date(this.props.curMonth).getFullYear()}.${new Date(this.props.curMonth).getMonth()+1}.${new Date(this.props.curMonth).getDate()}`;
+    const ddatee = `${new Date(lastMonthDay).getFullYear()}.${new Date(lastMonthDay).getMonth()+1}.${new Date(lastMonthDay).getDate()}`;
 
     const responseDdates = await api.get(`/ddates?ddateb=${ddateb}&ddatee=${ddatee}`);
-    this.props.setDdates(responseDdates.data.reduce((res, item) => ({...res, [item.ddate]: {score: item.score}}), {}));
 
-
-
-  }
-
-  componentDidMount() {
-    this.loadDdates();
+    this.props.setDdates(responseDdates.data.reduce((res, item) => ({...res, [item.monthday]: {score: item.score}}), {}));
   }
 
 

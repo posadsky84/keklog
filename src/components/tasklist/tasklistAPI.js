@@ -5,12 +5,14 @@ import {
   getCategories,
   setCategory,
   addTask,
-  deleteTask, setDuration
+  deleteTask,
+  setDuration
 } from "../../redux/tasklist-reducer";
 import Tasklist from "./tasklist";
 import {connect} from "react-redux";
 import React from "react";
 import {api} from "../../api";
+import {setDayActiveActionCreator, setDayEmptyActionCreator} from "../../redux/leftcolumn-reducer";
 
 let mapStateToProps = (state) => {
   return {
@@ -92,6 +94,7 @@ class tasklistAPI extends React.Component {
 
     if (response.status === 200) {
       this.props.addTask(response.data);
+      this.props.setDayActiveActionCreator(ddate.getDate());
     }
   }
 
@@ -100,6 +103,10 @@ class tasklistAPI extends React.Component {
 
     if (response.status === 200) {
       this.props.deleteTask(id);
+      debugger;
+      if (this.props.tasks.length === 1) {
+        this.props.setDayEmptyActionCreator(this.props.curDdate.getDate());
+      }
     }
 
   }
@@ -137,7 +144,9 @@ export default connect(mapStateToProps,
     setCategory,
     addTask,
     deleteTask,
-    setDuration
+    setDuration,
+    setDayActiveActionCreator,
+    setDayEmptyActionCreator
   })(tasklistAPI);
 
 

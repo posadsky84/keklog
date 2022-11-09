@@ -2,9 +2,8 @@
 .month-picker {
     display: flex;
     flex-direction: row;
-    padding-left: 10%;
-    background-color: pink;
     align-items: baseline;
+    justify-content: space-between;
 
 }
 
@@ -25,7 +24,7 @@
     height: 18px;
     line-height: 18px;
     display: inline-block;
-    margin: 20px;
+    margin: 20px 16px;
 }
 .arrow-3 .arrow-3-icon {
     position: relative;
