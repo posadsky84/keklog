@@ -112,8 +112,6 @@ class tasklistAPI extends React.Component {
 
   render() {
 
-    //{this.props.isFetching ? <Preloader /> : null}     можно потом добавить прелоадер
-
     return (
 
       <Tasklist

@@ -3,6 +3,7 @@ import Category from "../category/category";
 import Score from "../score/score";
 import {useState} from "react";
 import Duration from "../duration/duration";
+import Preloader from "../../common/preloader/preloader";
 
 
 const Task = ({id, name, checked, score, category, duration, categories, setCategory, setScore, setDuration, toggleTask, deleteTask}) => {
@@ -15,7 +16,7 @@ const Task = ({id, name, checked, score, category, duration, categories, setCate
 
     setTimerId(setTimeout(() => {
         deleteTask(id);
-    }, 5000));
+    }, 3000));
   }
 
   const cancelDeleting = () => {
@@ -44,7 +45,7 @@ const Task = ({id, name, checked, score, category, duration, categories, setCate
       </div>)
   } else {
     return (<div className='deleting-item'>
-      <div className='deleting-spinner'> ( 0 )</div>
+      <div className='deleting-spinner'><Preloader /></div>
       <div className='del-cancel-button' onClick={cancelDeleting}>Отменить удаление</div>
 
 

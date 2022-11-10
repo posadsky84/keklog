@@ -18,6 +18,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    border-radius: 2px;
 
 }
 
@@ -34,7 +35,9 @@
 }
 
 .curDdate,.curDdate:hover {
-    background-color: #337AB7 !important;
+    background-color: #8993A4 !important;
+    color: white !important;
+
 }
 
 

@@ -29,7 +29,12 @@ class PageAuth extends React.Component {
 
   onAuth = async () => {
     this.setState({error: ``});
+    if (!this.state.login || !this.state.password) {
+      this.setState({error: `Нужно ввести логин и пароль`});
+      return;
+    }
     this.setState({isLoading: true});
+
     const response = await api.post(`/login/`,
       {login: this.state.login, password: this.state.password});
 
@@ -52,10 +57,20 @@ class PageAuth extends React.Component {
         <div className='auth-form'>
           <div className='auth-block'><label className='auth-label' htmlFor='login'>Логин</label><input
             className='auth-input' type="text" id='login' value={this.state.login}
-            onChange={() => this.onChangeLogin(event.target.value)}/></div>
+            onChange={() => this.onChangeLogin(event.target.value)}
+              onKeyDown={(e)=>{
+              if (e.key === "Enter") {
+              this.onAuth();
+            }
+            }}/></div>
           <div className='auth-block'><label className='auth-label' htmlFor='password'>Пароль</label><input
             className='auth-input' type="password" id='password' value={this.state.password}
-            onChange={() => this.onChangePassword(event.target.value)}/></div>
+            onChange={() => this.onChangePassword(event.target.value)}
+            onKeyDown={(e)=>{
+              if (e.key === "Enter") {
+                this.onAuth();
+              }
+            }}/></div>
           {this.state.error && <div className='error-label'>{this.state.error}</div>}
           <button
             className='auth-button'
