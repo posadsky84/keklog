@@ -9,6 +9,7 @@ import {
 } from '../../redux/leftcolumn-reducer';
 import LeftColumn from './leftcolumn';
 import { api } from '../../api';
+import { throwIfNetworkError } from '../../helper';
 
 const mapStateToProps = state => ({
   ddates: state.LeftColumn.ddates,
@@ -48,12 +49,16 @@ class LeftColumnAPI extends React.Component {
     // eslint-disable-next-line max-len
     const ddatee = `${new Date(lastMonthDay).getFullYear()}.${new Date(lastMonthDay).getMonth() + 1}.${new Date(lastMonthDay).getDate()}`;
 
-    const responseDdates = await api.get(`/ddates?ddateb=${ddateb}&ddatee=${ddatee}`);
+    try {
+      const responseDdates = await api.get(`/ddates?ddateb=${ddateb}&ddatee=${ddatee}`);
 
-    this.props.setDdates(responseDdates.data.reduce((res, item) => ({
-      ...res,
-      [item.monthday]: { score: item.score },
-    }), {}));
+      this.props.setDdates(responseDdates.data.reduce((res, item) => ({
+        ...res,
+        [item.monthday]: { score: item.score },
+      }), {}));
+    } catch (error) {
+      throwIfNetworkError(error);
+    }
   };
 
   render() {

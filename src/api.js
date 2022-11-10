@@ -1,5 +1,7 @@
 import axios from 'axios';
 import _ from 'lodash';
+import { NotificationManager } from 'react-notifications';
+import { logout } from './helper';
 
 export const api = axios.create(
   {
@@ -15,4 +17,14 @@ api.interceptors.request.use(req => {
     req.headers.Authorization = `${token}`;
   }
   return req;
+});
+
+api.interceptors.response.use(res => {
+  if (res.status === 401 && !_.includes(res.config.url, `/login`)) {
+    logout();
+  } else if (res.status !== 200 && !_.includes(res.config.url, `/login`)) {
+    NotificationManager.error(res.status, res.statusText, 2000);
+  }
+
+  return res;
 });

@@ -1,3 +1,6 @@
+import _ from 'lodash';
+import { NotificationManager } from 'react-notifications';
+
 export const isAuth = () => {
   const token = localStorage.getItem(`token`);
   try {
@@ -11,4 +14,11 @@ export const isAuth = () => {
 export const logout = () => {
   localStorage.clear();
   window.location.replace(`/`);
+};
+
+export const throwIfNetworkError = data => {
+  if (_.includes(data?.message, `Network Error`)) {
+    NotificationManager.error(`Network Error`, data?.message, 2000);
+    throw new Error(`Network Error`);
+  }
 };

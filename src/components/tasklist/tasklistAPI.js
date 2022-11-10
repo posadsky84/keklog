@@ -13,6 +13,7 @@ import {
 import Tasklist from './tasklist';
 import { api } from '../../api';
 import { setDayActiveActionCreator, setDayEmptyActionCreator } from '../../redux/leftcolumn-reducer';
+import { throwIfNetworkError } from '../../helper';
 
 const mapStateToProps = state => ({
   curDdate: state.LeftColumn.curDdate,
@@ -33,67 +34,92 @@ class tasklistAPI extends React.Component {
 
   loadtasks = async () => {
     // eslint-disable-next-line max-len
-    const responseTasks = await api.get(`/tasks?ddate=${this.props.curDdate.getFullYear()}.${this.props.curDdate.getMonth() + 1}.${this.props.curDdate.getDate()}`);
-    this.props.setTasks(responseTasks.data);
+    try {
+      const responseTasks = await api.get(`/tasks?ddate=${this.props.curDdate.getFullYear()}.${this.props.curDdate.getMonth() + 1}.${this.props.curDdate.getDate()}`);
+      this.props.setTasks(responseTasks.data);
+    } catch (error) {
+      throwIfNetworkError(error);
+    }
 
-    const responseCategories = await api.get(`/category`);
-    this.props.getCategories(responseCategories.data);
+    try {
+      const responseCategories = await api.get(`/category`);
+      this.props.getCategories(responseCategories.data);
+    } catch (error) {
+      throwIfNetworkError(error);
+    }
   };
 
-  toggleTask = (id, value) => {
-    api.put(`/taskchecked/${id}`, { checked: value })
-      .then(response => {
-        if (response.status === 200) {
-          this.props.toggleTask(id, value);
-        }
-      });
+  toggleTask = async (id, value) => {
+    try {
+      const response = await api.put(`/taskchecked/${id}`, { checked: value });
+      if (response.status === 200) {
+        this.props.toggleTask(id, value);
+      }
+    } catch (error) {
+      throwIfNetworkError(error);
+    }
   };
 
-  setScore = (id, score) => {
-    api.put(`/taskscore/${id}`, { score })
-      .then(response => {
-        if (response.status === 200) {
-          this.props.setScore(id, score);
-        }
-      });
+  setScore = async (id, score) => {
+    try {
+      const response = await api.put(`/taskscore/${id}`, { score });
+      if (response.status === 200) {
+        this.props.setScore(id, score);
+      }
+    } catch (error) {
+      throwIfNetworkError(error);
+    }
   };
 
-  setDuration = (id, duration) => {
-    api.put(`/taskduration/${id}`, { duration })
-      .then(response => {
-        if (response.status === 200) {
-          this.props.setDuration(id, duration);
-        }
-      });
+  setDuration = async (id, duration) => {
+    try {
+      const response = await api.put(`/taskduration/${id}`, { duration });
+      if (response.status === 200) {
+        this.props.setDuration(id, duration);
+      }
+    } catch (error) {
+      throwIfNetworkError(error);
+    }
   };
 
   setCategory = async (id, category) => {
-    const response = await api.put(`/taskcategory/${id}`, { category });
-    if (response.status === 200) {
-      this.props.setCategory(id, category);
+    try {
+      const response = await api.put(`/taskcategory/${id}`, { category });
+      if (response.status === 200) {
+        this.props.setCategory(id, category);
+      }
+    } catch (error) {
+      throwIfNetworkError(error);
     }
   };
 
   postNewTask = async (ddate, name) => {
-    const response = await api.post(
-      `/newtask/`,
-      { ddate: `${ddate.getFullYear()}.${ddate.getMonth() + 1}.${ddate.getDate()}`, name },
-    );
-
-    if (response.status === 200) {
-      this.props.addTask(response.data);
-      this.props.setDayActiveActionCreator(ddate.getDate());
+    try {
+      const response = await api.post(
+        `/newtask/`,
+        { ddate: `${ddate.getFullYear()}.${ddate.getMonth() + 1}.${ddate.getDate()}`, name },
+      );
+      if (response.status === 200) {
+        this.props.addTask(response.data);
+        this.props.setDayActiveActionCreator(ddate.getDate());
+      }
+    } catch (error) {
+      throwIfNetworkError(error);
     }
   };
 
   deleteTask = async id => {
-    const response = await api.delete(`/deletetask/${id}`);
+    try {
+      const response = await api.delete(`/deletetask/${id}`);
 
-    if (response.status === 200) {
-      this.props.deleteTask(id);
-      if (this.props.tasks.length === 1) {
-        this.props.setDayEmptyActionCreator(this.props.curDdate.getDate());
+      if (response.status === 200) {
+        this.props.deleteTask(id);
+        if (this.props.tasks.length === 1) {
+          this.props.setDayEmptyActionCreator(this.props.curDdate.getDate());
+        }
       }
+    } catch (error) {
+      throwIfNetworkError(error);
     }
   };
 

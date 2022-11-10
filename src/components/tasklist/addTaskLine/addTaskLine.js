@@ -38,9 +38,9 @@ function AddTaskLine(props) {
     <div>
       {!isEditing
         ? (
-          <div className="add-task-line">
+          <div className="add-task-line" onClick={onTaskLineClick}>
             <div className="plus">+</div>
-            <div className="add-task-button" onClick={onTaskLineClick}>Создать задачу</div>
+            <div className="add-task-button">Создать задачу</div>
           </div>
         )
         : (

@@ -28,10 +28,11 @@ function LeftColumn({
           const findDdate = ddates[ddate.getDate()];
 
           return +ddate === +curDdate
-            ? <div className={`ddate curDdate ${findDdate ? `exist-ddate` : ``}`}>{ddate.getDate()}</div>
+            ? <div className={`ddate curDdate ${findDdate ? `exist-ddate` : ``}`} key={ddate}>{ddate.getDate()}</div>
             : (
               <div
                 className={`ddate ${findDdate ? `exist-ddate` : ``}`}
+                key={ddate}
                 onClick={() => changeCurDdate(ddate)}
               >
                 {ddate.getDate()}

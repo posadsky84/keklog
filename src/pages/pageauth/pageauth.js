@@ -2,6 +2,7 @@ import './pageauth.css';
 import React from 'react';
 import Preloader from '../../components/common/preloader/preloader';
 import { api } from '../../api';
+import { throwIfNetworkError } from '../../helper';
 
 class PageAuth extends React.Component {
   constructor(props) {
@@ -32,19 +33,25 @@ class PageAuth extends React.Component {
     }
     this.setState({ isLoading: true });
 
-    const response = await api.post(
-      `/login/`,
-      { login: this.state.login, password: this.state.password },
-    );
+    try {
+      const response = await api.post(
+        `/login/`,
+        { login: this.state.login, password: this.state.password },
+      );
 
-    this.setState({ isLoading: false });
-    if (response.status === 200) {
-      localStorage.setItem(`token`, response.data.token);
-      window.location.replace(`/`);
-    } else if (response.status === 401) {
-      this.setState({ error: `Неверный логин или пароль` });
-    } else {
-      this.setState({ error: `Неизвестная ошибка` });
+      this.setState({ isLoading: false });
+      if (response.status === 200) {
+        localStorage.setItem(`token`, response.data.token);
+        window.location.replace(`/`);
+      } else if (response.status === 401) {
+        this.setState({ error: `Неверный логин или пароль` });
+      } else {
+        this.setState({ error: `Неизвестная ошибка` });
+      }
+    } catch (error) {
+      this.setState({ error: `` });
+      this.setState({ isLoading: false });
+      throwIfNetworkError(error);
     }
   };
 
