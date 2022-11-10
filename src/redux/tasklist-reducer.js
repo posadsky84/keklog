@@ -3,18 +3,18 @@ const SET_TASKS = `SET_TASKS`;
 const SET_SCORE = `SET_SCORE`;
 const GET_CATEGORIES = `GET_CATEGORIES`;
 const SET_CATEGORY = `SET_CATEGORY`;
-const ADD_TASK = 'ADD_TASK';
-const DELETE_TASK = 'DELETE_TASK';
-const SET_DURATION = 'SET_DURATION';
+const ADD_TASK = `ADD_TASK`;
+const DELETE_TASK = `DELETE_TASK`;
+const SET_DURATION = `SET_DURATION`;
 
 export const toggleTask = (id, value) => ({ type: TOGGLE_TASK, id, value });
 export const setTasks = tasks => ({ type: SET_TASKS, tasks });
 export const setScore = (id, score) => ({ type: SET_SCORE, id, score });
 export const getCategories = categories => ({ type: GET_CATEGORIES, categories });
 export const setCategory = (id, category) => ({ type: SET_CATEGORY, id, category });
-export const addTask = (task) => ({ type: ADD_TASK, task });
-export const deleteTask = (id) => ({ type: DELETE_TASK, id });
-export const setDuration = (id, duration) => ({type: SET_DURATION, duration});
+export const addTask = task => ({ type: ADD_TASK, task });
+export const deleteTask = id => ({ type: DELETE_TASK, id });
+export const setDuration = (id, duration) => ({ type: SET_DURATION, duration });
 
 const initialState = {
   Tasks: [],
@@ -41,7 +41,7 @@ const TasklistReducer = (state = initialState, action) => {
     case SET_CATEGORY:
       return {
         ...state,
-        Tasks: state.Tasks.map(u => (u.id === action.id ? {...u, category: action.category} : u)),
+        Tasks: state.Tasks.map(u => (u.id === action.id ? { ...u, category: action.category } : u)),
       };
     case GET_CATEGORIES:
       return {
@@ -61,7 +61,7 @@ const TasklistReducer = (state = initialState, action) => {
     case SET_DURATION:
       return {
         ...state,
-        Tasks: state.Tasks.map(u => (u.id === action.id ? {...u, duration: action.duration} : u)),
+        Tasks: state.Tasks.map(u => (u.id === action.id ? { ...u, duration: action.duration } : u)),
       };
     default:
       return state;

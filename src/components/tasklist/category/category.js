@@ -1,75 +1,79 @@
-import "./category.css";
-import {useEffect, useState, useRef} from "react";
+import './category.css';
+import {
+  useCallback, useEffect, useState, useRef,
+} from 'react';
 
-const Category = ({taskId, categoryId, categories, setCategory}) => {
-
+function Category({
+  taskId, categoryId, categories, setCategory,
+}) {
   const [isEditing, setIsEditing] = useState(false);
-  const [value, setValue] = useState(categoryId);
   const dropDownRef = useRef(null);
 
-  const cancelEditing = () => {
+  const cancelEditing = useCallback(() => {
     setIsEditing(false);
-    setValue(categoryId);
-  }
-
-
-
+  }, [setIsEditing]);
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = event => {
       if (dropDownRef && !dropDownRef?.current?.contains(event.target)) {
         cancelEditing();
       }
-    }
+    };
     if (isEditing) {
       document.addEventListener(`mousedown`, handleClickOutside);
       return () => {
         document.removeEventListener(`mousedown`, handleClickOutside);
-      }
+      };
     }
-  }, [isEditing]);
-
+  }, [isEditing, cancelEditing]);
 
   const onCategoryClick = () => {
     setIsEditing(true);
-  }
+  };
 
-
-  const onSelectCat = (id) => {
+  const onSelectCat = id => {
     setCategory(taskId, id);
-    setValue(id);
     setIsEditing(false);
-  }
+  };
 
-  let cat = categories.find(item => item.id === categoryId);
+  const cat = categories.find(item => item.id === categoryId);
 
   return (
-    <>
     <div className="category-editor-wrapper" ref={dropDownRef}>
-      <div className={categoryId ? "category-label" : "category-label add-category-label"} style={{backgroundColor: cat?.color}} onClick={onCategoryClick}>
-        {cat?.name || "+ кат"}
+      <div
+        className={categoryId ? `category-label` : `category-label add-category-label`}
+        onClick={onCategoryClick}
+        style={{ backgroundColor: cat?.color }}
+      >
+        {cat?.name || `+ кат`}
       </div>
       {isEditing && (
         <div>
           <div className="category-editor">
-            {categories.map((item) => (
-              <div key={item.id} className="category-label" style={{backgroundColor: item.color}} onClick={() => {onSelectCat(item.id)}}>
+            {categories.map(item => (
+              <div
+                className="category-label"
+                key={item.id}
+                onClick={() => { onSelectCat(item.id); }}
+                style={{ backgroundColor: item.color }}
+              >
                 {item.name}
               </div>
             ))}
-            <div className="borderline"/>
-            <div key="0" className="category-label" style={{backgroundColor: "#DFE1E6"}} onClick={() => {onSelectCat(null)}}>
+            <div className="borderline" />
+            <div
+              className="category-label"
+              key="0"
+              onClick={() => { onSelectCat(null); }}
+              style={{ backgroundColor: `#DFE1E6` }}
+            >
               нет
             </div>
           </div>
         </div>
       )}
     </div>
-    </>
-  )
-
-
+  );
 }
-
 
 export default Category;

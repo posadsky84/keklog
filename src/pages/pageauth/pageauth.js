@@ -1,11 +1,9 @@
 import './pageauth.css';
 import React from 'react';
-import Preloader from "../../components/common/preloader/preloader";
-import {api} from "../../api";
-
+import Preloader from '../../components/common/preloader/preloader';
+import { api } from '../../api';
 
 class PageAuth extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -14,78 +12,89 @@ class PageAuth extends React.Component {
       password: null,
       error: ``,
     };
-
   }
 
-  //this.setState({isLoading: true});
+  // this.setState({isLoading: true});
 
-  onChangeLogin = (val) => {
-    this.setState({login: val});
-  }
+  onChangeLogin = val => {
+    this.setState({ login: val });
+  };
 
-  onChangePassword = (val) => {
-    this.setState({password: val});
-  }
+  onChangePassword = val => {
+    this.setState({ password: val });
+  };
 
   onAuth = async () => {
-    this.setState({error: ``});
+    this.setState({ error: `` });
     if (!this.state.login || !this.state.password) {
-      this.setState({error: `Нужно ввести логин и пароль`});
+      this.setState({ error: `Нужно ввести логин и пароль` });
       return;
     }
-    this.setState({isLoading: true});
+    this.setState({ isLoading: true });
 
-    const response = await api.post(`/login/`,
-      {login: this.state.login, password: this.state.password});
+    const response = await api.post(
+      `/login/`,
+      { login: this.state.login, password: this.state.password },
+    );
 
-    this.setState({isLoading: false});
+    this.setState({ isLoading: false });
     if (response.status === 200) {
-      localStorage.setItem("token", response.data.token);
-      window.location.replace("/");
+      localStorage.setItem(`token`, response.data.token);
+      window.location.replace(`/`);
+    } else if (response.status === 401) {
+      this.setState({ error: `Неверный логин или пароль` });
     } else {
-      if (response.status === 401) {
-        this.setState({error: `Неверный логин или пароль`});
-      } else {
-        this.setState({error: `Неизвестная ошибка`});
-      }
+      this.setState({ error: `Неизвестная ошибка` });
     }
-  }
+  };
 
   render() {
-
-    return (<div className='auth-page'>
-        <div className='auth-form'>
-          <div className='auth-block'><label className='auth-label' htmlFor='login'>Логин</label><input
-            className='auth-input' type="text" id='login' value={this.state.login}
-            onChange={() => this.onChangeLogin(event.target.value)}
-              onKeyDown={(e)=>{
-              if (e.key === "Enter") {
-              this.onAuth();
-            }
-            }}/></div>
-          <div className='auth-block'><label className='auth-label' htmlFor='password'>Пароль</label><input
-            className='auth-input' type="password" id='password' value={this.state.password}
-            onChange={() => this.onChangePassword(event.target.value)}
-            onKeyDown={(e)=>{
-              if (e.key === "Enter") {
-                this.onAuth();
-              }
-            }}/></div>
-          {this.state.error && <div className='error-label'>{this.state.error}</div>}
+    return (
+      <div className="auth-page">
+        <div className="auth-form">
+          <div className="auth-block">
+            <label className="auth-label" htmlFor="login">Логин</label>
+            <input
+              className="auth-input"
+              id="login"
+              onChange={event => this.onChangeLogin(event.target.value)}
+              onKeyDown={e => {
+                if (e.key === `Enter`) {
+                  this.onAuth();
+                }
+              }}
+              type="text"
+              value={this.state.login}
+            />
+          </div>
+          <div className="auth-block">
+            <label className="auth-label" htmlFor="password">Пароль</label>
+            <input
+              className="auth-input"
+              id="password"
+              onChange={event => this.onChangePassword(event.target.value)}
+              onKeyDown={e => {
+                if (e.key === `Enter`) {
+                  this.onAuth();
+                }
+              }}
+              type="password"
+              value={this.state.password}
+            />
+          </div>
+          {this.state.error && <div className="error-label">{this.state.error}</div>}
           <button
-            className='auth-button'
-            onClick={this.onAuth}
+            className="auth-button"
             disabled={this.state.isLoading}
+            onClick={this.onAuth}
+            type="button"
           >
-            {this.state.isLoading ? <Preloader/> : 'Вход'}
+            {this.state.isLoading ? <Preloader /> : `Вход`}
           </button>
         </div>
       </div>
     );
-
   }
-
 }
-
 
 export default PageAuth;

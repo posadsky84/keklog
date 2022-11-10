@@ -1,14 +1,12 @@
-import {combineReducers, createStore, legacy_createStore} from "redux";
-import LeftColumnReducer from "./leftcolumn-reducer";
-import TasklistReducer from "./tasklist-reducer";
+import { combineReducers, createStore } from 'redux';
+import LeftColumnReducer from './leftcolumn-reducer';
+import TasklistReducer from './tasklist-reducer';
 
-
-
-let reducers = combineReducers({
+const reducers = combineReducers({
   LeftColumn: LeftColumnReducer,
   Tasklist: TasklistReducer,
 });
 
-let store = createStore(reducers);
+const store = createStore(reducers);
 
 export default store;

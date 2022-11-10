@@ -1,12 +1,9 @@
-import "./preloader.css";
-import loading from "../../../assets/loading.png";
-import React from "react";
+import './preloader.css';
+import React from 'react';
+import loading from '../../../assets/loading.png';
 
-
-let Preloader = (props) => {
-
-  return <div><img className="movepick" src={loading} /></div>
-
+function Preloader() {
+  return <div><img alt="wait" className="movepick" src={loading} /></div>;
 }
 
 export default Preloader;
