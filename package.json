@@ -77,6 +77,7 @@
       "jsx-a11y/click-events-have-key-events": "off",
       "import/prefer-default-export": "off",
       "jsx-a11y/no-autofocus": "off",
+      "react/function-component-definition": "off",
       "consistent-return": "off",
       "react/jsx-max-props-per-line": [
         "warn",

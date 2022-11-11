@@ -5,9 +5,20 @@ import Score from '../score/score';
 import Duration from '../duration/duration';
 import Preloader from '../../common/preloader/preloader';
 
-function Task({
-  id, name, checked, score, category, duration, categories, setCategory, setScore, setDuration, toggleTask, deleteTask,
-}) {
+const Task = ({
+  id,
+  name,
+  checked,
+  score,
+  category,
+  duration,
+  categories,
+  setCategory,
+  setScore,
+  setDuration,
+  toggleTask,
+  deleteTask,
+}) => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [timerId, setTimerId] = useState(null);
 
@@ -27,24 +38,28 @@ function Task({
   if (!isDeleting) {
     return (
       <div className="task-item">
-        <input
-          checked={checked}
-          id={`cb${id}`}
-          onClick={() => toggleTask(id, !checked)}
-          type="checkbox"
-        />
-        <label htmlFor={`cb${id}`} title={name}>{name}</label>
-        <Category
-          categories={categories}
-          categoryId={category}
-          setCategory={setCategory}
-          taskId={id}
-        />
-        <Duration duration={duration} id={id} setDuration={setDuration} />
-        <Score id={id} score={score} setScore={setScore} />
-        <div className="del-button" onClick={() => goDeleteTask(id)}>
-          <div className="del-line-1" />
-          <div className="del-line-2" />
+        <div className="line-part-1">
+          <input
+            checked={checked}
+            id={`cb${id}`}
+            onClick={() => toggleTask(id, !checked)}
+            type="checkbox"
+          />
+          <label htmlFor={`cb${id}`} title={name}>{name}</label>
+          <Category
+            categories={categories}
+            categoryId={category}
+            setCategory={setCategory}
+            taskId={id}
+          />
+        </div>
+        <div className="line-part-2">
+          <Duration duration={duration} id={id} setDuration={setDuration} />
+          <Score id={id} score={score} setScore={setScore} />
+          <div className="del-button" onClick={() => goDeleteTask(id)}>
+            <div className="del-line-1" />
+            <div className="del-line-2" />
+          </div>
         </div>
       </div>
     );
@@ -56,6 +71,6 @@ function Task({
 
     </div>
   );
-}
+};
 
 export default Task;

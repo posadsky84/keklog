@@ -8,8 +8,9 @@ import { isAuth } from './helper';
 import PageCalendar from './pages/pagecalendar/pagecalendar';
 import PageAbout from './pages/pageabout/pageabout';
 import 'react-notifications/lib/notifications.css';
+import PageAdmin from "./pages/pageadmin/pageadmin";
 
-function App() {
+const App = () => {
   const isLoggedIn = isAuth();
   return (
     <div className="app-wrapper">
@@ -19,7 +20,7 @@ function App() {
         ? (
           <Routes>
             <Route element={<PageCalendar />} path="/" />
-            <Route element={<div>admin</div>} path="/admin" />
+            <Route element={<PageAdmin />} path="/admin" />
             <Route element={<PageAbout />} path="/about" />
           </Routes>
         ) : (
@@ -29,6 +30,6 @@ function App() {
       <Footer />
     </div>
   );
-}
+};
 
 export default App;

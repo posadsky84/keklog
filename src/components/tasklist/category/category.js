@@ -3,9 +3,9 @@ import {
   useCallback, useEffect, useState, useRef,
 } from 'react';
 
-function Category({
+const Category = ({
   taskId, categoryId, categories, setCategory,
-}) {
+}) => {
   const [isEditing, setIsEditing] = useState(false);
   const dropDownRef = useRef(null);
 
@@ -74,6 +74,6 @@ function Category({
       )}
     </div>
   );
-}
+};
 
 export default Category;

@@ -3,14 +3,13 @@ import './header.css';
 import { NavLink } from 'react-router-dom';
 import { logout } from '../../helper';
 
-function Header({ isLoggedIn }) {
-  return (
-    <header className="header">
-      <div className="logo-box">
-        <div className="logo-box-1">КЕКЛОГ</div>
-        <div className="logo-box-2">мой трекер задач родом из Бишкека</div>
-      </div>
-      {isLoggedIn
+const Header = ({ isLoggedIn }) => (
+  <header className="header">
+    <div className="logo-box">
+      <div className="logo-box-1">КЕКЛОГ</div>
+      <div className="logo-box-2">мой трекер задач родом из Бишкека</div>
+    </div>
+    {isLoggedIn
       && (
       <>
         <nav className="nav-header">
@@ -36,8 +35,7 @@ function Header({ isLoggedIn }) {
         <div className="link-header logout" onClick={logout}>Выход</div>
       </>
       )}
-    </header>
-  );
-}
+  </header>
+);
 
 export default Header;

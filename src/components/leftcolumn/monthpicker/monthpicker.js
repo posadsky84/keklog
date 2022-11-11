@@ -1,6 +1,6 @@
 import './monthpicker.css';
 
-function MonthPicker({ curMonth, changeMonth }) {
+const MonthPicker = ({ curMonth, changeMonth }) => {
   const mnames = [`янв`, `фев`, `мар`, `апр`, `май`, `июн`, `июл`, `авг`, `сен`, `окт`, `ноя`, `дек`];
 
   return (
@@ -51,6 +51,6 @@ function MonthPicker({ curMonth, changeMonth }) {
     </div>
 
   );
-}
+};
 
 export default MonthPicker;

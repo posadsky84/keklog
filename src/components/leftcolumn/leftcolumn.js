@@ -1,9 +1,9 @@
 import _ from 'lodash';
 import MonthPicker from './monthpicker/monthpicker';
 
-function LeftColumn({
+const LeftColumn = ({
   className, curDdate, changeCurDdate, ddates, curMonth, changeMonth,
-}) {
+}) => {
   let skipDays = curMonth.getDay();
   if (skipDays === 0) {
     skipDays = 6;
@@ -42,6 +42,6 @@ function LeftColumn({
       </div>
     </div>
   );
-}
+};
 
 export default LeftColumn;

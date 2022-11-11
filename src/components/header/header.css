@@ -9,6 +9,8 @@
 
 }
 
+
+
 .logo-box {
     font-family: 'Finlandica', sans-serif;
 }
@@ -33,7 +35,6 @@
     transition: all 0.1s ease-in-out;
     font-size: 16px;
 
-
 }
 .link-header:hover {
     color: #596A8C;
@@ -48,7 +49,45 @@
     margin-left: auto;
 }
 
+@media (max-width: 1024px) {
+    .logo-box-1 {
+        font-size: 20px;
+    }
 
+    .logo-box-2 {
+        font-size: 14px;
+    }
 
+    .nav-header {
+        margin-left: 30px;
+    }
+
+    .link-header {
+        margin-right: 16px;
+    }
+}
+
+@media (max-width: 767px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-header {
+        margin-left: 0;
+        margin-top: 8px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .link-header {
+        font-size: 14px;
+    }
+
+    .logout {
+        margin-top: 12px;
+        margin-left: 0;
+    }
+}
 
 

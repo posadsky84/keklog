@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import './score.css';
 
-function Score({ id, score, setScore }) {
+const Score = ({ id, score, setScore }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [scoreValue, setScoreValue] = useState(score);
 
@@ -64,6 +64,6 @@ function Score({ id, score, setScore }) {
         {score}
       </div>
     );
-}
+};
 
 export default Score;

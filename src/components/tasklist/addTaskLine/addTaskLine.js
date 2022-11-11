@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './addTaskLine.css';
 
-function AddTaskLine(props) {
+const AddTaskLine = props => {
   const [isEditing, setIsEditing] = useState(false);
   const [addTaskValue, setAddTaskValue] = useState(``);
 
@@ -66,6 +66,6 @@ function AddTaskLine(props) {
         )}
     </div>
   );
-}
+};
 
 export default AddTaskLine;

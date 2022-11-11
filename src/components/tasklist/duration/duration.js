@@ -5,7 +5,7 @@ import {
 import _ from 'lodash';
 import clockPic from '../../../assets/clock.svg';
 
-function Duration({ id, duration, setDuration }) {
+const Duration = ({ id, duration, setDuration }) => {
   const [value, setValue] = useState(duration);
   const [editing, setEditing] = useState(false);
 
@@ -69,6 +69,6 @@ function Duration({ id, duration, setDuration }) {
 
       </div>
     );
-}
+};
 
 export default Duration;

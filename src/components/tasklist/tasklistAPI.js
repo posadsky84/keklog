@@ -35,6 +35,7 @@ class tasklistAPI extends React.Component {
   loadtasks = async () => {
     // eslint-disable-next-line max-len
     try {
+      // eslint-disable-next-line max-len
       const responseTasks = await api.get(`/tasks?ddate=${this.props.curDdate.getFullYear()}.${this.props.curDdate.getMonth() + 1}.${this.props.curDdate.getDate()}`);
       this.props.setTasks(responseTasks.data);
     } catch (error) {
