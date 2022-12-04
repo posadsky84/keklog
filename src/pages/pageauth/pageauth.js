@@ -1,7 +1,7 @@
 import './pageauth.css';
 import React from 'react';
 import Preloader from '../../components/common/preloader/preloader';
-import { api } from '../../api';
+import { API } from '../../api';
 import { throwIfNetworkError } from '../../helper';
 
 class PageAuth extends React.Component {
@@ -14,8 +14,6 @@ class PageAuth extends React.Component {
       error: ``,
     };
   }
-
-  // this.setState({isLoading: true});
 
   onChangeLogin = val => {
     this.setState({ login: val });
@@ -34,11 +32,7 @@ class PageAuth extends React.Component {
     this.setState({ isLoading: true });
 
     try {
-      const response = await api.post(
-        `/login/`,
-        { login: this.state.login, password: this.state.password },
-      );
-
+      const response = await API.auth(this.state.login, this.state.password);
       this.setState({ isLoading: false });
       if (response.status === 200) {
         localStorage.setItem(`token`, response.data.token);

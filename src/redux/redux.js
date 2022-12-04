@@ -1,4 +1,5 @@
-import { combineReducers, createStore } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
 import LeftColumnReducer from './leftcolumn-reducer';
 import TasklistReducer from './tasklist-reducer';
 
@@ -7,6 +8,6 @@ const reducers = combineReducers({
   Tasklist: TasklistReducer,
 });
 
-const store = createStore(reducers);
+const store = createStore(reducers, applyMiddleware(thunkMiddleware));
 
 export default store;

@@ -3,31 +3,16 @@ import React from 'react';
 import './leftcolumn.css';
 import { connect } from 'react-redux';
 import {
-  changeCurDdateActionCreator,
-  changeMonthActionCreator,
-  setDdatesActionCreator,
+  changeCurDdate,
+  changeMonth,
+  setDdatesThunk,
 } from '../../redux/leftcolumn-reducer';
 import LeftColumn from './leftcolumn';
-import { api } from '../../api';
-import { throwIfNetworkError } from '../../helper';
 
 const mapStateToProps = state => ({
   ddates: state.LeftColumn.ddates,
   curDdate: state.LeftColumn.curDdate,
   curMonth: state.LeftColumn.curMonth,
-});
-
-// избавиться от процедуры когда все заработает
-const mapDispatchToProps = dispatch => ({
-  changeCurDdate: ddate => {
-    dispatch(changeCurDdateActionCreator(ddate));
-  },
-  setDdates: ddates => {
-    dispatch(setDdatesActionCreator(ddates));
-  },
-  changeMonth: diff => {
-    dispatch(changeMonthActionCreator(diff));
-  },
 });
 
 class LeftColumnAPI extends React.Component {
@@ -42,23 +27,7 @@ class LeftColumnAPI extends React.Component {
   }
 
   loadDdates = async () => {
-    const lastMonthDay = new Date(this.props.curMonth.getFullYear(), this.props.curMonth.getMonth() + 1, 0);
-
-    // eslint-disable-next-line max-len
-    const ddateb = `${new Date(this.props.curMonth).getFullYear()}.${new Date(this.props.curMonth).getMonth() + 1}.${new Date(this.props.curMonth).getDate()}`;
-    // eslint-disable-next-line max-len
-    const ddatee = `${new Date(lastMonthDay).getFullYear()}.${new Date(lastMonthDay).getMonth() + 1}.${new Date(lastMonthDay).getDate()}`;
-
-    try {
-      const responseDdates = await api.get(`/ddates?ddateb=${ddateb}&ddatee=${ddatee}`);
-
-      this.props.setDdates(responseDdates.data.reduce((res, item) => ({
-        ...res,
-        [item.monthday]: { score: item.score },
-      }), {}));
-    } catch (error) {
-      throwIfNetworkError(error);
-    }
+    this.props.setDdatesThunk(this.props.curMonth);
   };
 
   render() {
@@ -75,4 +44,10 @@ class LeftColumnAPI extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LeftColumnAPI);
+export default connect(mapStateToProps,
+  {
+    setDdatesThunk,
+    changeCurDdate,
+    changeMonth,
+  },
+)(LeftColumnAPI);
