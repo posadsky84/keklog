@@ -9,8 +9,13 @@ import PageCalendar from './pages/pagecalendar/pagecalendar';
 import PageAbout from './pages/pageabout/pageabout';
 import 'react-notifications/lib/notifications.css';
 import PageAdmin from "./pages/pageadmin/pageadmin";
+import { useDispatch } from 'react-redux';
+import { GET_LOCATIONS } from './redux/all-reducer';
 
 const App = () => {
+  const dispatch = useDispatch();
+  dispatch({type: GET_LOCATIONS});
+
   const isLoggedIn = isAuth();
   return (
     <div className="app-wrapper">

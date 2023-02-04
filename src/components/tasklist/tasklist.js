@@ -10,6 +10,10 @@ const Tasklist = props => (
       .
       {props.curDdate.getMonth() + 1}
     </h2>
+    <div className="location-block">
+      <div className="location-label">Локация</div>
+      <div className="location-input">{props.locations.find(item => item.id === props.location)?.name}</div>
+    </div>
     <div className="task-list">
       {props.tasks.map(({
         id, name, checked, score, category, duration,

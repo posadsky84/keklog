@@ -9,6 +9,8 @@ const SET_CATEGORY = `SET_CATEGORY`;
 const ADD_TASK = `ADD_TASK`;
 const DELETE_TASK = `DELETE_TASK`;
 const SET_DURATION = `SET_DURATION`;
+export const GET_LOCATION = "GET_LOCATION";
+const SET_LOCATION = "SET_LOCATION";
 
 const toggleTask = (id, value) => ({ type: TOGGLE_TASK, id, value });
 const setScore = (id, score) => ({ type: SET_SCORE, id, score });
@@ -19,6 +21,9 @@ const setDuration = (id, duration) => ({ type: SET_DURATION, duration });
 
 const getCategories = categories => ({ type: GET_CATEGORIES, categories });
 const setTasks = tasks => ({ type: SET_TASKS, tasks });
+
+export const setLocation = location => ({type: SET_LOCATION, location});
+export const getLocation = ddate => ({type: GET_LOCATION, ddate});
 
 export const toggleTaskThunk = (id, value) => async dispatch => {
   const response = await API.toggleTask(id, value);
@@ -80,6 +85,7 @@ export const setTasksThunk = curDdate => async dispatch => {
 const initialState = {
   Tasks: [],
   Categories: [],
+  location: null,
 };
 
 const TasklistReducer = (state = initialState, action) => {
@@ -123,6 +129,11 @@ const TasklistReducer = (state = initialState, action) => {
       return {
         ...state,
         Tasks: state.Tasks.map(u => (u.id === action.id ? { ...u, duration: action.duration } : u)),
+      };
+    case SET_LOCATION:
+      return {
+        ...state,
+        location: action.location,
       };
     default:
       return state;

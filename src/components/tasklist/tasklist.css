@@ -10,3 +10,16 @@
     padding-bottom: 4px;
 }
 
+.location-block {
+  display: flex;
+
+}
+
+.location-label {
+
+}
+
+.location-input {
+    border: dashed;
+    width: 100px;
+}

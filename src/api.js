@@ -2,10 +2,11 @@ import axios from 'axios';
 import _ from 'lodash';
 import { NotificationManager } from 'react-notifications';
 import { logout } from './helper';
+import { backURL } from './misc';
 
 const instance = axios.create(
   {
-    baseURL: `http://keklog.fun:4000`,
+    baseURL: backURL,
     validateStatus: status => (status >= 200 && status < 500),
     timeout: 15000,
   },
@@ -43,8 +44,14 @@ export const API = {
   getCategories() {
     return instance.get(`/category`);
   },
+  getLocations() {
+    return instance.get(`/locations`);
+  },
   getDdates(ddateb, ddatee) {
     return instance.get(`/ddates?ddateb=${ddateb}&ddatee=${ddatee}`);
+  },
+  getLocation(ddate) {
+    return instance.get(`/location?ddate=${ddate}`);
   },
   toggleTask(id, checked) {
     return instance.put(`/taskchecked/${id}`, { checked })

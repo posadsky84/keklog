@@ -1,4 +1,4 @@
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import React from 'react';
 import {
   toggleTaskThunk,
@@ -8,6 +8,7 @@ import {
   deleteTaskThunk,
   setDurationThunk,
   setTasksThunk,
+  getLocation,
 } from '../../redux/tasklist-reducer';
 import Tasklist from './tasklist';
 
@@ -15,6 +16,8 @@ const mapStateToProps = state => ({
   curDdate: state.LeftColumn.curDdate,
   tasks: state.Tasklist.Tasks,
   categories: state.Tasklist.Categories,
+  location: state.Tasklist.location,
+  locations: state.all.locations,
 });
 
 class tasklistAPI extends React.Component {
@@ -30,6 +33,8 @@ class tasklistAPI extends React.Component {
 
   loadtasks = () => {
     this.props.setTasksThunk(this.props.curDdate);
+    const ddate = `${new Date(this.props.curDdate).getFullYear()}.${new Date(this.props.curDdate).getMonth() + 1}.${new Date(this.props.curDdate).getDate()}`;
+    this.props.getLocation(ddate);
   };
 
   toggleTask = async (id, value) => {
@@ -69,6 +74,8 @@ class tasklistAPI extends React.Component {
         setScore={this.setScore}
         tasks={this.props.tasks}
         toggleTask={this.toggleTask}
+        location={this.props.location}
+        locations={this.props.locations}
       />
     );
   }
@@ -84,5 +91,6 @@ export default connect(
     postNewTaskThunk,
     deleteTaskThunk,
     setDurationThunk,
+    getLocation,
   },
 )(tasklistAPI);
